@@ -20,9 +20,9 @@ void PID::Init(double Kp, double Ki, double Kd) {
 	d_error = 0;
 	i_error = 0;
 
-	dp[0] = 1;
+	dp[0] = 0.01;
 	dp[1] = 1;
-	dp[2] = 1;
+	dp[2] = 0.01;
   	last_index = 0;
   	instancecount = 0; 
   	twidle = false;
@@ -43,7 +43,7 @@ double PID::TotalError() {
 void PID::Twidle(double cte){
 	// Minimise CTE
     double p[3] = {Kp,Ki,Kd};
-    if((fabs(dp[0])+fabs(dp[1])+fabs(dp[2])) > 0.2)
+    if((fabs(dp[0])+fabs(dp[1])+fabs(dp[2])) > 0.001)
     {
 	    if(instancecount == 0)
 	    {

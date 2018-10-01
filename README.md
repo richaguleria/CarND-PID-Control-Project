@@ -13,11 +13,14 @@ Integral(I) Component: Incase there is systematic bias caused by few degrees of 
 
 steering = -tau_p * CTE - tau_d * diff_CTE - tau_i * int_CTE where the integrated crosstrack error (int_CTE) is the sum of all the previous crosstrack errors.This term works to cancel out steering drift. This equation is PID controller.
 
-Initial value set for tau_p , tau_d and tau_i is 0.1 , 1.5, 0 resp. using trial and error. tau_i is 0, considering no systematic bias as driving in simulated condition.
+Initial value set for tau_p , tau_d and tau_i is 0.2 , 1.3, 0 resp. using trial and error. tau_i is 0, considering no systematic bias as driving in simulated condition.
 
-TWIDDLE is used to optimise average crosstrack error by tuning tau_p and tau_d parameters.
+With initial value of tau_p = 0.2, tau_i = 0 and tau_d = 0, vehicle was oscillating about the centre and steering off the curb at turns. To improve upon this tau_d was gradually increased from 0.5 to 1.3.  With this change vehicle was steady throughout the lap. However, speed was hovering around 30mph. 
 
-Further, initial value of throttle is set to 1.0. This value is brought to half if absolute cte exceeds 0.1 and speed exceeds 40.
+TWIDDLE is used to optimise average crosstrack error by varying initial value of tau_p = 0.2 and tau_d = 1.3 to potential changes of 0.01 for tau_p and 0.01 for tau_d. This did not change the performance of the vehicle. 
+
+To improve the speed, throttle is tweaked from 0.3 to 1.0 and this value is brought to half if absolute cte exceeds 0.1 and speed exceeds 40. This pushed the vehicle speed over 60mph. With this setting, vehicle was steering off the curb at sharp turns. To overcome this, tau_p was reduced to 0.1 and tau_d was increased to 1.5. 
+
 
 ---
 
